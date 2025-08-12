@@ -1,6 +1,6 @@
 ---
 title: "DATATHON"
-author: "MARAGIA RODGERS"
+author: "ROBERT"
 format: pdf
 editor: visual
 ---
@@ -9,6 +9,9 @@ editor: visual
 libr <- c("googlesheets4","tidytext","tidyr","ggplot2", "forcats","tidyverse")
 lapply(libr, library, character.only = TRUE)
 ```
+
+
+
 
 ```{r}
 #install.packages("googlesheets4")
@@ -26,12 +29,16 @@ sum(is.na(pneumonia))
 colnames(pneumonia)
 ```
 
+
 ```{r}
 pneumonia.clean <-  pneumonia %>%
   select(-`Study Title`,-`Brief Summary`,-`Primary Outcome Measures`,-`NCT Number`,-`Study URL`,-`Secondary Outcome Measures`,-`Other Outcome Measures`, -`Start Date`, -`Primary Completion Date`, - `Completion Date`, -`First Posted`, -`Last Update Posted`,-Conditions,-Interventions,-Sponsor,-Collaborators,-`Study Design`,-`Other IDs`,-Locations,-`Study Documents`,-Acronym,-`Results First Posted`) %>%
   mutate(duration = as.numeric(sub(" secs","", (pneumonia$`Completion Date` - pneumonia$`Start Date`)/86400))) #duration of study
 
 ```
+
+
+
 
 ```{r}
 pneumonia.clean$`Study Status` <- fct_recode(pneumonia.clean$`Study Status`, "1" = "UNKNOWN",
@@ -103,7 +110,7 @@ pneumonia.clean$`Study Type` <-   fct_recode(pneumonia.clean$`Study Type`,
 pneumonia.clean <-  na.omit(pneumonia.clean)
 ```
 
-# visualisation
+#   visualisation
 
 ```{r}
 pneumonia.clean %>%
@@ -121,6 +128,8 @@ pneumonia.clean %>%
   coord_flip()
 ```
 
+
+
 ```{r}
 pneumonia.clean %>%
   ggplot(mapping = aes(x = Enrollment, y = `Study Status`))+
@@ -128,8 +137,10 @@ pneumonia.clean %>%
   coord_flip()
 ```
 
-## CLASSIFICATION
+
+##    CLASSIFICATION
 
 ```{r}
 
 ```
+
